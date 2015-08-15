@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Blog</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<!-- assume this section is bootstrap navigation -->
+<!-- top navigation link -->
+
+<!-- kalau user tu sign in, tunjuk emel dia + tunjuk link log out -->
+<% if user_signed_in? %>
+	<p>User signed in</p>
+	<%= current_user.email %>
+
+	<%= link_to destroy_user_session_path, method: :delete do %>
+		Logout
+	<% end %>
+<% else %>
+	<!-- kalau dia tak login, tunjuk dia link login -->
+	<%= link_to "Login sini bro", new_user_session_path %>	
+<% end %>
+<!-- end navigation -->
+
+
+<%= yield %>
+
+</body>
+</html>
